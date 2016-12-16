@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html ng-app="hotkeyDemoApp">
+<head>
+    <TITLE>Hotkey Demo Application</TITLE>
+    <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" href="vendor/angularjs-hotkeys/hotkeys.min.css"/>
+
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<nav class="navbar navbar-fixed-top">
+    <a class="navbar-brand" href="#">Hotkey Demo App</a>
+</nav>
+
+<div ng-controller="mainCtrl">
+
+    <div>
+        <h2>Hotkey test on survey section</h2>
+
+        <h3>Questions</h3>
+        <form action="">
+
+            <table class="table" hotkey="{'alt+down': nextQuestion, 'alt+up': prevQuestion, 'alt+1': select1, 'alt+2': select2, 'alt+3': select3}">
+                <!--<div ng-class="{'qselected': currQ == '0'}" ng-click="currQ=0">-->
+                <thead><tr>
+                    <th class="col-lg-4 text-center">Question</th>
+                    <th class="col-lg-3 text-center">1</th>
+                    <th class="col-lg-3 text-center">2</th>
+                    <th class="col-lg-3 text-center">3</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-class="{'qselected': currQ == '0'}" ng-click="currQ=0">
+                    <td> Question A: </td>
+                    <td class="text-center" ng-class="{'optselected': qList[0].response == '1'}" > <input type="radio" ng-model="qList[0].response" value="1">  </td>
+                    <td class="text-center" ng-class="{'optselected': qList[0].response == '2'}" > <input type="radio" ng-model="qList[0].response" value="2">  </td>
+                    <td class="text-center" ng-class="{'optselected': qList[0].response == '3'}" > <input type="radio" ng-model="qList[0].response" value="3">  </td>
+
+                </tr>
+
+                <tr ng-class="{'qselected': currQ == '1'}" ng-click="currQ=1">
+                    <td> Question B: </td>
+                    <td class="text-center" ng-class="{'optselected': qList[1].response == '1'}" ><input type="radio" ng-model="qList[1].response" value="1">  </td>
+                    <td class="text-center" ng-class="{'optselected': qList[1].response == '2'}" ><input type="radio" ng-model="qList[1].response" value="2">  </td>
+                    <td class="text-center" ng-class="{'optselected': qList[1].response == '3'}" ><input type="radio" ng-model="qList[1].response" value="3">  </td>
+                </tr>
+                <tr ng-class="{'qselected': currQ == '2'}" ng-click="currQ=2">
+                    <td> Question C: </td>
+                    <td class="text-center" ng-class="{'optselected': qList[2].response == '1'}" ><input type="radio" ng-model="qList[2].response" value="1">  </td>
+                    <td class="text-center" ng-class="{'optselected': qList[2].response == '2'}" ><input type="radio" ng-model="qList[2].response" value="2">  </td>
+                    <td class="text-center" ng-class="{'optselected': qList[2].response == '3'}" ><input type="radio" ng-model="qList[2].response" value="3">  </td>
+                </tr>
+                <tr ng-class="{'qselected': currQ == '3'}" ng-click="currQ=3">
+                    <td> Question D: </td>
+                    <td class="text-center" ng-class="{'optselected': qList[3].response == '1'}" ><input type="radio" ng-model="qList[3].response" value="1">  </td>
+                    <td class="text-center" ng-class="{'optselected': qList[3].response == '2'}" ><input type="radio" ng-model="qList[3].response" value="2">  </td>
+                    <td class="text-center" ng-class="{'optselected': qList[3].response == '3'}" ><input type="radio" ng-model="qList[3].response" value="3">  </td>
+                </tr>
+                <tr ng-class="{'qselected': currQ == '4'}" ng-click="currQ=4">
+                    <td> Question E: </td>
+                    <td class="text-center" ng-class="{'optselected': qList[4].response == '1'}" ><input type="radio" ng-model="qList[4].response" value="1">  </td>
+                    <td class="text-center" ng-class="{'optselected': qList[4].response == '2'}" ><input type="radio" ng-model="qList[4].response" value="2">  </td>
+                    <td class="text-center" ng-class="{'optselected': qList[4].response == '3'}" ><input type="radio" ng-model="qList[4].response" value="3">  </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+
+        <br/>
+        <h3>Responses</h3>
+        <div>
+            <label>Response to Question A: {{qList[0].response}}</label><br/>
+            <label>Response to Question B: {{qList[1].response}}</label><br/>
+            <label>Response to Question C: {{qList[2].response}}</label><br/>
+            <label>Response to Question D: {{qList[3].response}}</label><br/>
+            <label>Response to Question E: {{qList[4].response}}</label><br/>
+        </div>
+    </div>
+
+
+    <div>
+        <h2>Hotkey Demo Using Auto Generated Survey</h2>
+
+        <h3>Questions</h3>
+        <form action="">
+
+            <table class="table" hotkey="{'alt+down': nextQuestion, 'alt+up': prevQuestion, 'alt+1': select1, 'alt+2': select2, 'alt+3': select3}">
+                <!--<div ng-class="{'qselected': currQ == '0'}" ng-click="currQ=0">-->
+                <thead><tr>
+                    <th class="col-lg-4 text-center">Question</th>
+                    <th class="col-lg-3 text-center">1</th>
+                    <th class="col-lg-3 text-center">2</th>
+                    <th class="col-lg-3 text-center">3</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in qList" ng-class="{'qselected': currQ == $index}" ng-click="currQ=$index">
+                    <td> {{row.question}} </td>
+                    <td class="text-center" ng-class="{'optselected': row.response == '1'}" > <input type="radio" ng-model="row.response" value="1">  </td>
+                    <td class="text-center" ng-class="{'optselected': row.response == '2'}" > <input type="radio" ng-model="row.response" value="2">  </td>
+                    <td class="text-center" ng-class="{'optselected': row.response == '3'}" > <input type="radio" ng-model="row.response" value="3">  </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </form>
+
+        <br/>
+        <h3>Responses</h3>
+        <div>
+            <label>Response to Question A: {{qList[0].response}}</label><br/>
+            <label>Response to Question B: {{qList[1].response}}</label><br/>
+            <label>Response to Question C: {{qList[2].response}}</label><br/>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="vendor/jquery/jquery.js"></script>
+<script type="text/javascript" src="vendor/angularjs/angular.js"></script>
+<script type="text/javascript" src="vendor/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="vendor/angularjs-hotkeys/hotkeys.min.js"></script>
+
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/controller.js"></script>
+</body>
+</html>
+
+
